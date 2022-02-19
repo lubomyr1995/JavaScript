@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+</head>
+<body>
+<h1 id="main_header">This is page for task2</h1>
+<ul>
+    <li class="linkList listElement1"><a href="#">link1</a></li>
+    <li class="linkList listElement2"><a href="#">link2</a></li>
+    <li class="linkList listElement3"><a href="#">link3</a></li>
+</ul>
+<h3 class="sub-header">content 1 segment</h3>
+<div class="content_1">
+    <p class="text_segment text1">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet at autem cumque distinctio,
+        dolorem
+        eligendi eum eveniet facere inventore ipsa minus pariatur repellendus sequi sit veniam voluptatum.
+        Fugit,
+        soluta?</p>
+
+</div>
+<h3 class="sub-header">content 2 segment</h3>
+<div class="content_2">
+    <p class="text_segment text2">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam beatae, exercitationem modi mollitia
+        omnis
+        possimus quam rerum sequi temporibus tenetur! Accusantium ad commodi eveniet excepturi laboriosam quis
+        quisquam sint temporibus.</p>
+</div>
+<script>
+
+    // Взяти файл template_2.html та працювати в ньому
+
+    // 1) Напишіть код, який :
+    // a) додає клас з назвою групи, елементу з ід main_header
+    document.getElementById('main_header').classList.add('nameOfGroup')
+
+    // b) робить шириниу елементу ul 400px
+    document.getElementsByTagName('ul')[0].style.width = '400px'
+
+    // c) робить шириниу всіх елементів з класом linkList шириною 50%
+    for (const el of document.getElementsByClassName('linkList')) {
+        el.style.width = '50%'
+    }
+
+    // d) отримує текст який зберігається в елементі з класом listElement2
+    console.log(document.getElementsByClassName('listElement2')[0].textContent)
+    console.log(document.getElementsByClassName('listElement2')[0].innerHTML)
+
+    // e) отримує всі елементи li та змінює ім колір фону на сірий
+    for (const el of document.getElementsByTagName('li')) {
+        el.style.backgroundColor = 'silver';
+    }
+
+    // f) отримує всі елементи 'a' та додає їм клас anchor
+    for (const el of document.getElementsByTagName('a')) {
+        el.classList.add('anchor')
+    }
+
+    // g) отримує всі елементи 'a' та у випадку, якщо текстовий контен елементу дорівнює link3,
+    // змінює йому розмір тексту на 40 пікселів
+    for (const el of document.getElementsByTagName('a')) {
+        if (el.textContent === 'link3') {
+            el.style.fontSize = '40px'
+        }
+    }
+
+    // h) отримує всі елементи 'a' та додає їм клас element_XXX. Де XXX - текстовий контент елементу a
+    for (const el of document.getElementsByTagName('a')) {
+        el.classList.add(el.textContent)
+    }
+
+    // // i) отримує всі елементи 'sub-header' та змінює колір фону. Фон отримати з prompt()
+    // arrClSubdocument = document.getElementsByClassName('sub-header')
+    // for (const el of arrClSubdocument) {
+    //     el.style.backgroundColor =  prompt(`Введіть колір фону класу ${el.textContent}`)
+    // }
+
+    // // j) отримує всі елементи 'sub-header' та змінює колір тексту у видаку якщо текст елемнту = content 2 segment.
+    // //    Колір отримати з prompt()
+    // arrClSubdocument2 = document.getElementsByClassName('sub-header')
+    // for (const el of arrClSubdocument2) {
+    //     if (el.textContent === 'content 2 segment') {
+    //         el.style.color = prompt('Введіть колір тексту')
+    //     }
+    // }
+
+    // // k) отримує елемент з класом content_1 та заміняє  в ньому текст на довільний. Текст отримати з prompt()
+    // document.getElementsByClassName('content_1')[0].innerHTML = prompt('Введіть текст: ')
+
+    // l) отримати елементи p та змінити їм padding на 20px
+    for (const text of document.getElementsByTagName('p')) {
+        text.style.padding = '20px'
+    }
+    // m) отримати елементи з класом text2 та змінити їм текст на назву групи (mon-year. Пример sep-2021)
+    document.getElementsByClassName('text2')[0].innerHTML = 'dec-2021'
+
+</script>
+</body>
+</html>
