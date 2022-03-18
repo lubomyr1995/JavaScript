@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        * {
+            margin: 5px;
+        }
+
+        .table {
+            margin: 20px;
+        }
+    </style>
+    <title>Goods list</title>
+</head>
+<body>
+
+<script>
+    const wrapper = document.createElement('div');
+
+    nav = document.createElement('nav');
+
+    navAdd = document.createElement('a');
+    navAdd.setAttribute('href', 'index.html');
+    navAdd.innerText = 'Add';
+
+    navList = document.createElement('a');
+    navList.setAttribute('href', '#');
+    navList.innerText = 'List';
+
+    nav.append(navAdd, navList);
+    wrapper.appendChild(nav);
+
+    document.body.appendChild(wrapper);
+
+
+    btnDeleteAll = document.createElement('button');
+    btnDeleteAll.innerText = 'All Delete';
+    wrapper.appendChild(btnDeleteAll);
+
+
+    const divGoods = document.createElement('div');
+    wrapper.appendChild(divGoods);
+
+    const tableGoods = document.createElement('table');
+    tableGoods.setAttribute('class', 'table')
+    divGoods.appendChild(tableGoods);
+
+    const thead = document.createElement('thead');
+    thead.innerText = 'TABLE GOODS'
+    tableGoods.appendChild(thead);
+
+    const trHead = document.createElement('tr');
+    thead.appendChild(trHead);
+
+    const thHeadName = document.createElement('th');
+    thHeadName.innerText = '  Name  ';
+    const thHeadQuantity = document.createElement('th');
+    thHeadQuantity.innerText = '  Quantity  ';
+    const thHeadPrice = document.createElement('th');
+    thHeadPrice.innerText = '  Price  ';
+    const thHeadPicture = document.createElement('th');
+    thHeadPicture.innerText = '  Picture  ';
+    const thHeadAction = document.createElement('th');
+
+    trHead.append(thHeadName, thHeadQuantity, thHeadPrice, thHeadPicture, thHeadAction);
+
+    const tbody = document.createElement('tbody');
+    tableGoods.appendChild(tbody);
+
+    btnDeleteAll.onclick = () => {
+        if (!tbody.firstChild) {
+            return;
+        }
+        while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
+        }
+        localStorage.setItem('goods', JSON.stringify([]));
+    }
+
+    let goods = JSON.parse(localStorage.getItem('goods')) || [];
+    goods.forEach(item => {
+        const tr = document.createElement('tr');
+        tbody.appendChild(tr);
+
+        const tdName = document.createElement('td');
+        tdName.innerText = item.name;
+        const tdQuantity = document.createElement('td');
+        tdQuantity.innerText = item.quantity;
+        const tdPrice = document.createElement('td');
+        tdPrice.innerText = item.price;
+        const tdPicture = document.createElement('td');
+        tdPicture.innerText = item.picture;
+        const tdAction = document.createElement('td');
+        const btnDelete = document.createElement('button');
+        btnDelete.innerText = 'del'
+
+        tdAction.appendChild(btnDelete);
+
+        tr.append(tdName, tdQuantity, tdPrice, tdPicture, tdAction);
+
+        btnDelete.onclick = () => {
+            tr.remove();
+            goods.splice(goods.indexOf(goods.find(value => value.name === item.name)), 1);
+            localStorage.setItem('goods', JSON.stringify(goods));
+        }
+    });
+
+</script>
+
+</body>
+</html>
